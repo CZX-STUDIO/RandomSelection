@@ -4,6 +4,7 @@
 
 import tkinter as tk
 import random as rd
+import os
 from tkinter import messagebox  # 导库
 
 
@@ -22,19 +23,24 @@ def click_b1():  # button1的函数
     text1.edit_undo()
     text1.insert(tk.INSERT, result)
 
+def click_b2():
+    os.system('shutdown /r /t 5')
+    messagebox.showinfo('Loading', '正在切换')
+
 
 window1 = tk.Tk()
 window1.title('随机抽选')
-window1.geometry('500x400')
+window1.geometry('500x450')
 window1.iconbitmap('RandomSelection.ico')
 label1 = tk.Label(window1, text='请输入抽选样本总数（上）与抽选次数（下）', font=('仿宋', 18))
-label2 = tk.Label(window1, text='RandomSelection v1.0.2', font=('仿宋', 8))
+label2 = tk.Label(window1, text='RandomSelection v1.1.0', font=('仿宋', 8))
 label3 = tk.Label(window1, text='上一次的抽选结果为：', font=('仿宋', 18))
 text1 = tk.Text(window1, width=24, height=7, undo=True, wrap='char', font=('仿宋', 22))
 text1.insert(tk.INSERT, '    （请先进行抽选）')
 entry1 = tk.Entry(window1, font=('仿宋', 18))
 entry2 = tk.Entry(window1, font=('仿宋', 18))
-button1 = tk.Button(window1, text='确认', command=click_b1, font=('仿宋', 18))  # 定义控件、窗口
+button1 = tk.Button(window1, text='确认', command=click_b1, font=('仿宋', 18))
+button2 = tk.Button(window1, text='change to ENGLISH', command=click_b2, font=('仿宋', 18))  # 定义控件、窗口
 label1.pack()
 entry1.pack()
 entry2.pack()
@@ -42,6 +48,7 @@ button1.pack()
 label3.pack()
 text1.pack()
 label2.pack(anchor='e', side='bottom')
+button2.pack(anchor='w', side='bottom')
 window1.mainloop()  # 放置控件
 
 """
