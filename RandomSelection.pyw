@@ -8,8 +8,8 @@ import os
 from tkinter import messagebox  # 导库
 
 
-def click_b1():  # button1的函数
-    if int(entry2.get())-int(entry1.get()) <= int(entry3.get())+1:
+def click_b1() -> None:  # button1的函数
+    if int(entry2.get()) - int(entry1.get()) <= int(entry3.get()) + 1:
         messagebox.showinfo("别玩了", "再玩就坏了")
         return
     i = 0
@@ -25,7 +25,8 @@ def click_b1():  # button1的函数
     text1.edit_undo()
     text1.insert(tk.INSERT, result)  # 输出结果
 
-def click_b2():
+
+def click_b2() -> None:
     os.system('shutdown /r /t 5')
     messagebox.showinfo('Loading', '正在切换')
 
