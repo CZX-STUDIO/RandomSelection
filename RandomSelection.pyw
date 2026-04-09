@@ -7,16 +7,27 @@ import random as rd
 import os
 from tkinter import messagebox  # 导库
 
+f = open('Exclusion.txt', 'r', encoding='utf-8')
+Exclusion_list = []
+while True:
+    line = f.readline()
+    if len(line) >= 1:
+        if line[0] != '\n':
+            Exclusion_list.append(int(line[0:-1]))
+        else:
+            break
+f.close()
+
 
 def click_b1() -> None:  # button1的函数
-    if int(entry2.get()) - int(entry1.get()) <= int(entry3.get()) + 1:
+    if int(entry2.get()) - int(entry1.get()) <= int(entry3.get()) - 1:
         messagebox.showinfo("别玩了", "再玩就坏了")
         return
     i = 0
     num_list = []  # 函数初始化
     while i < int(entry3.get()):
         r_num = rd.randint(int(entry1.get()), int(entry2.get()))
-        if r_num not in num_list:
+        if r_num not in num_list and r_num not in Exclusion_list:
             num_list.append(r_num)
         else:
             continue
@@ -35,7 +46,7 @@ window1 = tk.Tk()
 window1.title('随机抽选')
 window1.geometry('440x280')
 window1.iconbitmap('RandomSelection.ico')
-label_v = tk.Label(window1, text='RandomSelection v1.2.0', font=('仿宋', 8))
+label_v = tk.Label(window1, text='RandomSelection v1.3.0', font=('仿宋', 8))
 label1 = tk.Label(window1, text='抽选结果为：', font=('仿宋', 18))
 label2 = tk.Label(window1, text='抽选起始位置', font=('仿宋', 18))
 label3 = tk.Label(window1, text='抽选结束位置', font=('仿宋', 18))
