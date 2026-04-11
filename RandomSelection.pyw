@@ -8,26 +8,26 @@ import os
 from tkinter import messagebox  # 导库
 
 f = open('Exclusion.txt', 'r', encoding='utf-8')
-Exclusion_list = []
+exclusion_list = []
 while True:
     line = f.readline()
     if len(line) >= 1:
         if line[0] != '\n':
-            Exclusion_list.append(int(line[0:-1]))
+            exclusion_list.append(int(line[0:-1]))
         else:
             break
 f.close()
 
 
 def click_b1() -> None:  # button1的函数
-    if int(entry2.get()) - int(entry1.get()) <= int(entry3.get()) - 1:
+    if int(entry2.get()) - int(entry1.get()) + 1 - len(exclusion_list) < int(entry3.get()):
         messagebox.showinfo("别玩了", "再玩就坏了")
         return
     i = 0
     num_list = []  # 函数初始化
     while i < int(entry3.get()):
         r_num = rd.randint(int(entry1.get()), int(entry2.get()))
-        if r_num not in num_list and r_num not in Exclusion_list:
+        if r_num not in num_list and r_num not in exclusion_list:
             num_list.append(r_num)
         else:
             continue
