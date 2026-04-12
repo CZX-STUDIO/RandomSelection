@@ -20,19 +20,13 @@ f.close()
 
 
 def click_b1() -> None:  # button1的函数
-    if int(entry2.get()) - int(entry1.get()) + 1 - len(exclusion_list) < int(entry3.get()):
-        messagebox.showinfo("别玩了", "再玩就坏了")
+    all_num = range(int(entry1.get()), int(entry2.get())+1)
+    num_list = [i for i in all_num if i not in exclusion_list]
+    if len(num_list) >= int(entry3.get()):
+        result = '、'.join(map(str, rd.sample(num_list, int(entry3.get()))))
+    else:
+        messagebox.showinfo('别玩了', '再玩就坏了')
         return
-    i = 0
-    num_list = []  # 函数初始化
-    while i < int(entry3.get()):
-        r_num = rd.randint(int(entry1.get()), int(entry2.get()))
-        if r_num not in num_list and r_num not in exclusion_list:
-            num_list.append(r_num)
-        else:
-            continue
-        i += 1  # 循环抽取学号
-    result = '、'.join(map(str, num_list))
     text1.edit_undo()
     text1.insert(tk.INSERT, result)  # 输出结果
 
@@ -46,7 +40,7 @@ window1 = tk.Tk()
 window1.title('随机抽选')
 window1.geometry('440x280')
 window1.iconbitmap('RandomSelection.ico')
-label_v = tk.Label(window1, text='RandomSelection v1.3.0', font=('仿宋', 8))
+label_v = tk.Label(window1, text='RandomSelection v2.0.0', font=('仿宋', 8))
 label1 = tk.Label(window1, text='抽选结果为：', font=('仿宋', 18))
 label2 = tk.Label(window1, text='抽选起始位置', font=('仿宋', 18))
 label3 = tk.Label(window1, text='抽选结束位置', font=('仿宋', 18))
