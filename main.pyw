@@ -5,25 +5,21 @@
 import tkinter as tk
 import random as rd
 import os
+import json
 from tkinter import messagebox  # 导库
 
-f = open('Exclusion.txt', 'r', encoding='utf-8')
-exclusion_list = []
-while True:
-    line = f.readline()
-    if len(line) >= 1:
-        if line[0] != '\n':
-            exclusion_list.append(int(line[0:-1]))
-        else:
-            break
-f.close()
+with open('config.json', 'r', encoding='utf-8') as f:
+    content = json.load(f)
+exclusion_list = content['exclusion']
+
+_sys_rand = rd.SystemRandom()
 
 
 def click_b1() -> None:  # button1的函数
     all_num = range(int(entry1.get()), int(entry2.get())+1)
     num_list = [i for i in all_num if i not in exclusion_list]
     if len(num_list) >= int(entry3.get()):
-        result = '、'.join(map(str, rd.sample(num_list, int(entry3.get()))))
+        result = '、'.join(map(str, _sys_rand.sample(num_list, int(entry3.get()))))
     else:
         messagebox.showinfo('别玩了', '再玩就坏了')
         return
@@ -40,7 +36,7 @@ window1 = tk.Tk()
 window1.title('随机抽选')
 window1.geometry('440x280')
 window1.iconbitmap('RandomSelection.ico')
-label_v = tk.Label(window1, text='RandomSelection v2.0.0', font=('仿宋', 8))
+label_v = tk.Label(window1, text='RandomSelection v2.1.0', font=('仿宋', 8))
 label1 = tk.Label(window1, text='抽选结果为：', font=('仿宋', 18))
 label2 = tk.Label(window1, text='抽选起始位置', font=('仿宋', 18))
 label3 = tk.Label(window1, text='抽选结束位置', font=('仿宋', 18))
