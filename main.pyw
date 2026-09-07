@@ -107,7 +107,7 @@ if __name__ == '__main__':
     label4 = ttk.Label(window1, text='抽选次数')
 
     # tk.Text 没有 ttk 替代品，保留 tk.Text
-    text1 = tk.Text(window1, width=24, height=3, undo=True, wrap='char')
+    text1 = tk.Text(window1, width=24, height=3, undo=True, wrap='char', font=FONT_LARGE)
     text1.insert(tk.END, '    （请先进行抽选）')
 
     entry1 = ttk.Entry(window1, width=7)
