@@ -1,0 +1,31 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+*.egg
+
+# ===== 虚拟环境 =====
+.venv/
+venv/
+env/
+
+# ===== PyInstaller 打包产物 =====
+build/
+dist/
+*.manifest
+
+# ===== IDE / 编辑器 =====
+.idea/
+.vscode/
+*.swp
+
+# ===== 运行时用户数据（本地学号排除配置，缺失时程序会自动降级）=====
+config.json
+Exclusion.txt
+
+# ===== 系统文件 / 日志 =====
+*.log
+Thumbs.db
+.DS_Store
